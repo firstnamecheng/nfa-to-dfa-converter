@@ -23,3 +23,4 @@ dfa = make_dfa( q0 )
 print( q0.transitions["a"][0].name )
 # print( dfa.get_name() )    <-- fix this
 print( dfa.nfaStates )
+1+1
