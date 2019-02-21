@@ -29,5 +29,3 @@ class DfaState( State ):
             self.transitions[ transition ] = DfaState( nfaStates,
                                                        self.transitions.keys() )
 
-
-print( "" )
