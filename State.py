@@ -15,7 +15,17 @@ class State:
         return self.transitions[ char ]
 
     def add_transition( self, transition, next_state ):
-        self.transitions[ transition ].append( next_state )
+        transitions = self.transitions[ transition ]
+        State.add_no_dup( transitions, next_state )
+
+    @staticmethod
+    def add_no_dup( collection, state ):
+        if state not in collection:
+            collection.append( state )
+
+    def print_name( self ):
+        print( self.name )
+
 
 
 q0 = State( "q0", ["a", "b"] )
@@ -23,4 +33,3 @@ q1 = State( "q1", ["a", "b"] )
 q2 = State( "q2", ["a", "b"] )
 
 q0.add_transition( "a", q1 )
-1
