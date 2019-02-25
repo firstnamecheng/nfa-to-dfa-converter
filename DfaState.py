@@ -13,10 +13,10 @@ class DfaState( State ):
         for state in self.nfaStates:
             name += state.name + ", "
         name = name[ :-2 ]
+        if name == "":
+            name = "trap"
+            self.type = "trap"
         self.name = name
-
-    def add_nfa_state( self, state ):
-        State.add_no_dup( self.nfaStates, state )
 
     def make_transitions( self ):
         for transition in self.transitions.keys():
@@ -27,9 +27,15 @@ class DfaState( State ):
             self.transitions[ transition ] = new_nfaStates
 
     def see_dfa( self ):
-        print( self.name + ", type: " + self.type )
+        print( "Name: [" + self.name + "], type: " + self.type )
 
-    def check_final( self ):
+    def check_type( self ):
+        if self.name == "q0":
+            self.type = "initial"
         for state in self.nfaStates:
             if state.type == "final":
-                self.type = "final"
+                if self.type == "nd":
+                    self.type = "final"
+                elif self.type == "initial":
+                    self.type += ", final"
+
