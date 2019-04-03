@@ -1,3 +1,8 @@
+"""
+State class that represents each state of an NFA.
+
+Author: Cheng Ye
+"""
 from dataclasses import dataclass
 
 

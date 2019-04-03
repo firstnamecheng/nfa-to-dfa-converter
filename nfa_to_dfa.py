@@ -1,8 +1,22 @@
+"""
+Main program that converts an NFA to DFA.
+
+Author: Cheng Ye
+"""
+
 from State import State
 from DfaState import DfaState
 
 
 def make_dfa( nfastate ):
+    """
+    Converts the initial state of an NFA to a DFA.
+    This method covers lambda transitions.
+
+    Precondition: nfastate is an initial state
+    :param nfastate: The initial NFA state
+    :return: Initial DFA state
+    """
     if nfastate.type == "initial":
         states = list()
         states.append( nfastate )
@@ -18,6 +32,9 @@ def make_dfa( nfastate ):
 
 
 def help_nfa():
+    """
+    Prints usage when creating the NFA
+    """
     print( "Add transition example: qM > a > qN" )
     print( "Enter 'qX setinitial' to set as initial state")
     print( "Enter 'qX setfinal' to set as final state" )
@@ -25,6 +42,10 @@ def help_nfa():
 
 
 def help_dfa():
+    """
+    Prints usage when traversing the DFA
+    :return:
+    """
     print( "Enter 'view' to view name and type of current state" )
     print( "To see transition on x, enter 'transition x'" )
     print( "To move to next node on transition x, enter 'process x'" )
@@ -33,6 +54,10 @@ def help_dfa():
 
 
 def nfa_loop( nfa_states ):
+    """
+    Loop that prompts the user to complete the NFA
+    :param nfa_states: Unconnected NFA states
+    """
     print( "Enter 'help' to see usage for editing NFA\n" )
     editing_nfa = True
     while editing_nfa:
@@ -60,6 +85,11 @@ def nfa_loop( nfa_states ):
 
 
 def dfa_loop( nfa_states ):
+    """
+    Loop that prompts the user to enter inputs
+    in order to traverse the DFA.
+    :param nfa_states: The states that will be used to create the DFA
+    """
     current_dfa = make_dfa( nfa_states[ 0 ] )
     initial = current_dfa
     print( "Enter 'help' to see usage for viewing DFA\n" )
@@ -92,10 +122,6 @@ def dfa_loop( nfa_states ):
             break
         else:
             print( "Action not recognized" )
-
-
-
-
 
 
 def main():
