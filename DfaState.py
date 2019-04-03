@@ -33,7 +33,7 @@ class DfaState( State ):
         if self.name == "q0":
             self.type = "initial"
         for state in self.nfaStates:
-            if state.type == "final":
+            if "final" in state.type:
                 if self.type == "nd":
                     self.type = "final"
                 elif self.type == "initial":
